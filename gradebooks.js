@@ -3,10 +3,9 @@ export class Gradebooks{
     records = [];
     constructor(groups, teachers,lms){
        this.groups = groups.groups;
-       console.log("gradebooks");
        this.teachers = teachers.teachers;
         this.lms = lms.subjects;
-    }
+    } 
     add(level, groupId){
         let gradebookId = Symbol("Gradebook Id");
         let obj = {};
@@ -18,8 +17,6 @@ export class Gradebooks{
     }
     addRecord(gradebookId, {pupilId,teacherId,subjectId,lesson,mark}){
         let obj={};
-        console.log(this.teachers);
-        console.log(this.teachers.get(teacherId));
         let fName = this.teachers.get(teacherId).name.first;
         let lName = this.teachers.get(teacherId).name.last;
         obj['teacher'] = fName + ' ' + lName;
@@ -49,9 +46,7 @@ export class Gradebooks{
     }
     readAll(gradebookId){
         let students = this.gradebooks.get(gradebookId).group.pupils;
-        console.log(students);
         let keys =[ ...students.keys() ];
-        console.log(keys);
         let arr = [];
         for(let sym of keys){
             let fname = students.get(sym).name.first;
