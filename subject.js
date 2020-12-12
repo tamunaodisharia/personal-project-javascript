@@ -1,9 +1,9 @@
 export class Subject {
     constructor({title,lessons, description}){
-        if(typeof title !== 'string' || typeof title === 'undefined'){
+        if(typeof title !== 'string'){
             throw new Error("Error: subject title is required and it should be a string");
         }
-        if(typeof lessons !== 'number' || typeof title === 'undefined'){
+        if(typeof lessons !== 'number'){
             throw new Error("Error: number of subject lessons is required and its type should be a number");
         }else{
             if(lessons > 366 || lessons < 0){
