@@ -1,20 +1,23 @@
-export class Pupils{
-    pupils = new Map();
-    constructor(){}
-    add(pupilData){
+import { Validator } from "./validator.js";
+export class Pupils {
+    constructor() {
+        this.pupils = new Map();
+    }
+    add(pupilData) {
+        Validator.verify(pupilData);
         let pupilId = Symbol("Pupil Id");
         pupilData['id'] = pupilId;
-        this.pupils.set(pupilId, pupilData); 
+        this.pupils.set(pupilId, pupilData);
         return pupilId;
-    } 
-    remove(pupilId){
+    }
+    remove(pupilId) {
         this.pupils.delete(pupilId);
     }
-    update(pupilId, newProfile){
-        newProfile['id']=pupilId;
+    update(pupilId, newProfile) {
+        newProfile['id'] = pupilId;
         this.pupils.set(pupilId, newProfile);
     }
-    read(pupilId){
+    read(pupilId) {
         return this.pupils.get(pupilId);
     }
 }

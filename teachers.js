@@ -1,20 +1,23 @@
-export class Teachers{
-    teachers = new Map();
-    constructor(){}
-    add(data){
+import { Validator } from "./validator.js";
+export class Teachers {
+    constructor() {
+        this.teachers = new Map();
+    }
+    add(data) {
+        Validator.verify(data);
         let teacherId = Symbol("Teacher Id");
         data['id'] = teacherId;
-        this.teachers.set(teacherId, data); 
+        this.teachers.set(teacherId, data);
         return teacherId;
-    } 
-    remove(teacherId){
+    }
+    remove(teacherId) {
         this.teachers.delete(teacherId);
     }
-    update(teacherId, updatedProfile){
+    update(teacherId, updatedProfile) {
         updatedProfile['id'] = teacherId;
         this.teachers.set(teacherId, updatedProfile);
     }
-    read(teacherId){
+    read(teacherId) {
         return this.teachers.get(teacherId);
     }
 }

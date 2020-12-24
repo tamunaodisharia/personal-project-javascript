@@ -1,36 +1,42 @@
-export class Groups{
-    groups = new Map();
-    constructor(pupils){
+export class Groups {
+    constructor(pupils) {
+        this.groups = new Map();
         this.pupils = pupils.pupils;
     }
-    add(room){
+    add(room) {
         let groupId = Symbol("Group Id");
-        let obj = {};
-        obj['id'] = groupId;
-        obj['room'] = room;
-        obj['pupils'] = new Map();
-        this.groups.set(groupId, obj); 
+        let obj = { id: groupId, room: room, pupils: new Map() };
+        // obj['id'] = groupId;
+        // obj['room'] = room;
+        // obj['pupils'] = new Map();
+        this.groups.set(groupId, obj);
         return groupId;
     }
-    addPupil(groupId, pupilId){
+    addPupil(groupId, pupilId) {
         let data = this.groups.get(groupId);
-        data['pupils'].set(pupilId, this.pupils.get(pupilId));
-        this.groups.set(groupId, data); 
+        if (typeof data !== 'undefined') {
+            data["pupils"].set(pupilId, this.pupils.get(pupilId));
+            this.groups.set(groupId, data);
+        }
     }
-    removePupil(groupId, pupilId){
+    removePupil(groupId, pupilId) {
         let data = this.groups.get(groupId);
-        data['pupils'].delete(pupilId);
-        this.groups.set(groupId, data); 
+        if (typeof data !== 'undefined') {
+            data['pupils'].delete(pupilId);
+            this.groups.set(groupId, data);
+        }
     }
-    update(groupId, {room: n}){
+    update(groupId, { room: n }) {
         let data = this.groups.get(groupId);
-        data['room'] = n;
-        this.groups.set(groupId, data); 
+        if (typeof data !== 'undefined') {
+            data['room'] = n;
+            this.groups.set(groupId, data);
+        }
     }
-    read(groupId){
+    read(groupId) {
         return this.groups.get(groupId);
     }
-    readAll(){
+    readAll() {
         return this.groups;
     }
 }

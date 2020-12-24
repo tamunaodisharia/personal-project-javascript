@@ -1,26 +1,27 @@
-export class LMS{
-    subjects = new Map();
-    constructor(){}
-    add(name){
-        if(this.verify(name)){
-            console.log("subject already exists");
-        }else{
-            this.subjects.set(name.id, name); 
-        }
-        
+export class LMS {
+    constructor() {
+        this.subjects = new Map();
     }
-    remove(name){
-        if(this.verify(name)){
+    add(name) {
+        if (this.verify(name)) {
+            console.log("subject already exists");
+        }
+        else {
+            this.subjects.set(name.id, name);
+        }
+    }
+    remove(name) {
+        if (this.verify(name)) {
             this.subjects.delete(name.id);
-        }else{
+        }
+        else {
             console.log("couldn't be removed. subject doesn't exist in the database");
         }
     }
-    verify(name){
+    verify(name) {
         return this.subjects.has(name.id);
     }
-    readALL(){
+    readALL() {
         return this.subjects;
     }
 }
-
